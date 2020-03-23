@@ -1,0 +1,23 @@
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{layout::head}"></head>
+<body>
+
+<div th:insert="~{layout::menu}" style="color:red;"></div>
+
+    <div class="container">
+        <h3>Danh sách học viên:</h3>
+
+        <ul>
+
+            <li th:each="stu:${students}">
+                <p th:text="${stu.name}"></p>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <footer th:replace="~{layout::footer}"></footer>
+
+</body>

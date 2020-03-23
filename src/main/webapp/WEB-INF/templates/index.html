@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>Dự án Spring sử dụng Thymeleaf</title>
+</head>
+<body>
+
+<h1>Dự án Spring sử dụng <p th:text="${tech}"></p> </h1>
+
+<h3>Danh sách học viên:</h3>
+
+<ul>
+
+    <li th:each="stu:${students}">
+        <p th:text="${stu.name}"></p>
+    </li>
+
+</ul>
+
+</body>
+</html>
