@@ -1,5 +1,9 @@
 package com.codegym;
 
+import com.codegym.repositories.IStudentRepository;
+import com.codegym.repositories.StudentRepository;
+import com.codegym.services.IStudentService;
+import com.codegym.services.StudentService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -55,6 +59,16 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
         viewResolver.setCharacterEncoding("UTF-8");
 
         return viewResolver;
+    }
+
+    @Bean
+    public IStudentService studentService() {
+        return new StudentService(studentRepository());
+    }
+
+    @Bean
+    public IStudentRepository studentRepository() {
+        return new StudentRepository();
     }
 
 }

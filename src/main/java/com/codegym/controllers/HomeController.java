@@ -1,25 +1,26 @@
 package com.codegym.controllers;
 
 import com.codegym.models.Student;
+import com.codegym.repositories.IStudentRepository;
+import com.codegym.services.IStudentService;
+import com.codegym.services.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class HomeController {
 
-    static List<Student> getStudents() {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("Bằng"));
-        students.add(new Student("Tú"));
-        students.add(new Student("Linh"));
-        students.add(new Student("Hoàng"));
-        students.add(new Student("Khải"));
+    private IStudentService studentService;
 
-        return students;
+    HomeController(IStudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    List<Student> getStudents() {
+        return studentService.getAllStudents("");
     }
 
     @GetMapping("/home")
