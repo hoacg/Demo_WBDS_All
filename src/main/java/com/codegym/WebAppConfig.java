@@ -1,8 +1,7 @@
 package com.codegym;
 
 import com.codegym.repositories.IStudentRepository;
-import com.codegym.repositories.StudentRealRepository;
-import com.codegym.repositories.StudentRepository;
+import com.codegym.repositories.StudentHibernateRepository;
 import com.codegym.services.IStudentService;
 import com.codegym.services.StudentService;
 import org.springframework.beans.BeansException;
@@ -69,7 +68,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
 
     @Bean
     public IStudentRepository studentRepository() {
-        return new StudentRealRepository();
+        return new StudentHibernateRepository();
     }
 
 }
