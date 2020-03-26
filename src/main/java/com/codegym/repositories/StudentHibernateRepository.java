@@ -35,4 +35,9 @@ public class StudentHibernateRepository implements IStudentRepository {
 
         return typedQuery.getResultList();
     }
+
+    @Override
+    public Student save(Student student) {
+        return null;
+    }
 }

@@ -31,6 +31,11 @@ public class StudentRealRepository implements IStudentRepository {
         return queryStudents("SELECT * FROM students WHERE name LIKE '" + character + "%'");
     }
 
+    @Override
+    public Student save(Student student) {
+        return null;
+    }
+
 
     private List<Student> queryStudents(String query) {
         List<Student> students = new ArrayList<>();

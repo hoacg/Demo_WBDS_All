@@ -30,4 +30,16 @@ public class StudentHibernateSpringDataJPARepository implements IStudentReposito
 
         return typedQuery.getResultList();
     }
+
+    @Override
+    public Student save(Student student) {
+
+        if (student.getId() != null && student.getId() > 0) {
+            this.entityManager.merge(student);
+        } else {
+            this.entityManager.persist(student);
+        }
+
+        return student;
+    }
 }

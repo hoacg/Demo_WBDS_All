@@ -34,4 +34,9 @@ public class StudentRepository implements IStudentRepository {
         return students;
     }
 
+    @Override
+    public Student save(Student student) {
+        return null;
+    }
+
 }
