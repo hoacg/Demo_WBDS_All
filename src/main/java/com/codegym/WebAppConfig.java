@@ -7,11 +7,12 @@ import com.codegym.services.NewStudentService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -37,7 +38,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.codegym.controllers")
 @EnableJpaRepositories("com.codegym.repositories")
-//@EnableSpringDataWebSupport
 public class WebAppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     ApplicationContext applicationContext;
@@ -132,5 +132,13 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 
         return properties;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("ValidationMessage");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 }

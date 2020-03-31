@@ -27,5 +27,10 @@ dependencies {
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.0.7.RELEASE'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.12.Final'
 
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.10.Final'
+
+//    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
+//    compile group: 'ognl', name: 'ognl', version: '3.0.4'
 
 }

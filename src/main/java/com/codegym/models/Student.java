@@ -1,6 +1,8 @@
 package com.codegym.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -11,6 +13,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty(message = "Thông tin này không được rỗng")
     private String name;
 
     public int getGender() {
@@ -65,8 +68,11 @@ public class Student {
         this.facebook = facebook;
     }
 
+    @Size(min = 4, max = 100, message = "Độ dài chuỗi nằm trong khoảng từ 4 đến 100 ký tự")
     private String address;
+
     private LocalDate birthday;
+
     private String facebook;
 
     public Student() {}

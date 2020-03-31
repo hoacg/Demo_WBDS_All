@@ -10,13 +10,13 @@
 
 <h3>Danh sách học viên:</h3>
 
-<ul>
+<table>
 
-    <li th:each="stu:${students}">
-        <p th:text="${stu.name}"></p>
-    </li>
+    <tr th:each="stu:${students}">
+        <td th:text="${stu.name}"></td>
+    </tr>
 
-</ul>
+</table>
 
 </body>
 </html>
