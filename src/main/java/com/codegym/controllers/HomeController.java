@@ -1,13 +1,12 @@
 package com.codegym.controllers;
 
 import com.codegym.models.Student;
-import com.codegym.repositories.IStudentRepository;
 import com.codegym.services.IStudentService;
-import com.codegym.services.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -49,6 +48,12 @@ public class HomeController {
         studentService.save(student);
 
         return "redirect:/student-list";
+    }
+
+    @GetMapping("/students/{id}")
+    public String getStudentDetail(@PathVariable("id") Student student, Model model) {
+        model.addAttribute("student", student);
+        return "student-detail";
     }
 
 }

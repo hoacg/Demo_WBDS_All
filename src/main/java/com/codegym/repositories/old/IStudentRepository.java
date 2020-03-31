@@ -1,4 +1,4 @@
-package com.codegym.repositories;
+package com.codegym.repositories.old;
 
 import com.codegym.models.Student;
 

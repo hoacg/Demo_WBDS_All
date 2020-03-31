@@ -1,7 +1,7 @@
-package com.codegym.repositories;
+package com.codegym.repositories.old;
 
 import com.codegym.models.Student;
-import com.codegym.repositories.mysql.MySQLConnection;
+import com.codegym.repositories.old.mysql.MySQLConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

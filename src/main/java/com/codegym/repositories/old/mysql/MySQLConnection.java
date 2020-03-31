@@ -1,4 +1,4 @@
-package com.codegym.repositories.mysql;
+package com.codegym.repositories.old.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

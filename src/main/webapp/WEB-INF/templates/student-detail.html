@@ -1,0 +1,18 @@
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{layout::head}"></head>
+<body>
+
+<nav th:replace="~{layout::menu}"></nav>
+
+<div class="container">
+
+    <p th:text="${student.name}"></p>
+    <p th:text="${student.gender}"></p>
+
+</div>
+
+<footer th:replace="~{layout::footer}"></footer>
+
+</body>
+

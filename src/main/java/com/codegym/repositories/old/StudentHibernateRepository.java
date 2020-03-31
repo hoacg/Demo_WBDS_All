@@ -1,18 +1,23 @@
-package com.codegym.repositories;
+package com.codegym.repositories.old;
 
 import com.codegym.models.Student;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional
-public class StudentHibernateSpringDataJPARepository implements IStudentRepository {
+public class StudentHibernateRepository implements IStudentRepository {
 
-    @PersistenceContext
+
+    SessionFactory sessionFactory;
     EntityManager entityManager;
+
+    public StudentHibernateRepository() {
+        this.sessionFactory = new Configuration().configure("hibernate.conf.xml").buildSessionFactory();
+        this.entityManager = this.sessionFactory.createEntityManager();
+    }
 
 
     @Override
@@ -33,13 +38,6 @@ public class StudentHibernateSpringDataJPARepository implements IStudentReposito
 
     @Override
     public Student save(Student student) {
-
-        if (student.getId() != null && student.getId() > 0) {
-            this.entityManager.merge(student);
-        } else {
-            this.entityManager.persist(student);
-        }
-
-        return student;
+        return null;
     }
 }

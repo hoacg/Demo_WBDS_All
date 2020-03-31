@@ -1,8 +1,7 @@
 package com.codegym.services;
 
 import com.codegym.models.Student;
-import com.codegym.repositories.IStudentRepository;
-import com.codegym.repositories.StudentRepository;
+import com.codegym.repositories.old.IStudentRepository;
 
 import java.util.List;
 
