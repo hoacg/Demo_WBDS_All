@@ -1,5 +1,6 @@
 package com.codegym;
 
+import com.codegym.aspects.LoggingAspect;
 import com.codegym.repositories.old.IStudentRepository;
 import com.codegym.repositories.old.StudentHibernateSpringDataJPARepository;
 import com.codegym.services.IStudentService;
@@ -11,6 +12,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -38,6 +40,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.codegym.controllers")
 @EnableJpaRepositories("com.codegym.repositories")
+@EnableAspectJAutoProxy
 public class WebAppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     ApplicationContext applicationContext;
@@ -140,5 +143,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
         messageSource.setBasename("ValidationMessage");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
+    }
+
+    @Bean
+    public LoggingAspect loggingAspect() {
+        return new LoggingAspect();
     }
 }

@@ -7,16 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @ExceptionHandler(Exception.class)
+    public String handleError(Exception e) {
+        return "show-error";
+    }
 
     private IStudentService studentService;
 
@@ -52,7 +54,7 @@ public class HomeController {
     @PostMapping("/student-add")
     public ModelAndView saveStudent(@Validated @ModelAttribute Student student, BindingResult bindingResult) {
 
-        new FacebookUserValidator().validate(student.getFacebook(), bindingResult); // kiểm tra đường dẫn FB
+        new FacebookUserValidator().validate(student, bindingResult); // kiểm tra đường dẫn FB
 
         if (bindingResult.hasFieldErrors()) {
             String message = "Có lỗi xảy ra";
@@ -66,9 +68,11 @@ public class HomeController {
     }
 
     @GetMapping("/students/{id}")
-    public String getStudentDetail(@PathVariable("id") Student student, Model model) {
+    public String getStudentDetail(@PathVariable("id") Long student, Model model) {
         model.addAttribute("student", student);
         return "student-detail";
     }
+
+
 
 }
