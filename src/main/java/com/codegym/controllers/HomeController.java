@@ -3,6 +3,7 @@ package com.codegym.controllers;
 import com.codegym.models.Student;
 import com.codegym.services.IStudentService;
 import com.codegym.validators.FacebookUserValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,10 +11,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    HttpSession httpSession;
 
     @ExceptionHandler(Exception.class)
     public String handleError(Exception e) {
@@ -39,8 +44,15 @@ public class HomeController {
 
     @GetMapping("/student-list")
     public String getStudentList(Model model) {
-        model.addAttribute("students", getStudents());
-        return "student-list";
+
+        Object isSignedIn = httpSession.getAttribute("isSignedIn");
+
+        if (isSignedIn != null) {
+            model.addAttribute("students", getStudents());
+            return "student-list";
+        } else {
+            return "redirect:/signin";
+        }
     }
 
     @GetMapping("/student-add")
