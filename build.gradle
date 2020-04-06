@@ -34,7 +34,7 @@ dependencies {
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
     compile group: 'org.springframework', name: 'spring-aop', version: '4.3.17.RELEASE'
 
-//    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
 //    compile group: 'ognl', name: 'ognl', version: '3.0.4'
 
 }
