@@ -85,6 +85,10 @@ public class HomeController {
         return "student-detail";
     }
 
+    @GetMapping("/students-ajax")
+    public String getStudentAjax() {
+        return "demo_ajax";
+    }
 
 
 }

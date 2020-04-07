@@ -4,4 +4,5 @@ import com.codegym.models.Student;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface StudentRepository extends PagingAndSortingRepository<Student, Long> {
+    Iterable<Student> findAllByNameStartsWith(String name);
 }

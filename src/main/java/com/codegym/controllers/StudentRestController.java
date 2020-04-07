@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class StudentRestController {
 
@@ -19,6 +20,13 @@ public class StudentRestController {
     @ResponseBody()
     public List<Student> getStudentsList() {
         List<Student> students = this.studentService.getAllStudents("");
+        return students;
+    }
+
+    @GetMapping("/api/students/{name}")
+    @ResponseBody()
+    public List<Student> getStudentsListByName(@PathVariable String name) {
+        List<Student> students = this.studentService.getAllStudents(name);
         return students;
     }
 

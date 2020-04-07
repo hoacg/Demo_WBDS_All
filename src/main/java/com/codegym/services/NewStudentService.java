@@ -14,7 +14,11 @@ public class NewStudentService implements IStudentService {
 
     @Override
     public List<Student> getAllStudents(String startWithText) {
-        return (List<Student>) this.studentRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
+        if (startWithText.isEmpty()) {
+            return (List<Student>) this.studentRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
+        } else {
+            return (List<Student>) this.studentRepository.findAllByNameStartsWith(startWithText);
+        }
     }
 
     @Override

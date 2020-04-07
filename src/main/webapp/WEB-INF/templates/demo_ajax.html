@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo AJAX</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="/assets/jquery.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <button onclick="getStudentList()">Click to get student list</button>
+
+    <input id="searchName" type="text" oninput="searchStudentByName()" />
+
+    <div id="studentList"></div>
+</div>
+
+<script>
+
+    function searchStudentByName() {
+        let value = $('#searchName').val();
+        console.log(value);
+        $.ajax('http://localhost:8080/api/students/' + value)
+            .done(function (result) {
+                buildUI(result);
+            })
+            .fail(function (error) {
+                console.log(error);
+            });
+    }
+
+    function getStudentList() {
+        $.ajax('http://localhost:8080/api/students')
+            .done(function (result) {
+                buildUI(result);
+            })
+            .fail(function (error) {
+                console.log(error);
+            });
+    }
+
+    function buildUI(result) {
+        let slDiv = document.getElementById("studentList");
+
+        slDiv.innerHTML = "";
+
+        for (let i = 0; i < result.length; i++) {
+            let p = document.createElement("p");
+            p.innerText = result[i].name;
+            slDiv.appendChild(p);
+        }
+    }
+
+</script>
+
+</body>
+</html>

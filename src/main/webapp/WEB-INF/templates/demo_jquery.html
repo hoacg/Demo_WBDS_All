@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo jQuery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../../../resources/assets/jquery.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <button>Click to hide/show</button>
+    <div class="display" style="background-color: red; width: 200px;height: 200px;"></div>
+    <div class="display" style="background-color: yellow; width: 200px;height: 200px;"></div>
+    <div class="display" style="background-color: green; width: 200px;height: 200px;"></div>
+</div>
+
+<script>
+
+    $('button').click(function () {
+        $('.display').toggle();
+    });
+
+</script>
+</body>
+</html>
