@@ -80,13 +80,16 @@
     </style>
 </head>
 <body class="text-center">
+
+<h1 th:text="#{welcome}"></h1>
+
 <form class="form-signin" action="/signin" method="post">
     <p th:text="${message}"></p>
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input name="email" th:value="${email}" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input name="password" type="password" th:value="${password}" id="inputPassword" class="form-control" placeholder="Password" required>
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.title}"></h1>
+    <label for="inputEmail" class="sr-only" th:text="#{login.email-label}"></label>
+    <input name="email" th:value="${email}" type="email" id="inputEmail" class="form-control" th:placeholder="#{login.email-label}" required autofocus>
+    <label for="inputPassword" class="sr-only" th:text="#{login.password}"></label>
+    <input name="password" type="password" th:value="${password}" id="inputPassword" class="form-control" th:placeholder="#{login.password}" required>
     <div class="checkbox mb-3">
         <label>
             <input name="rememberMe" type="checkbox" value="remember-me"> Remember me
