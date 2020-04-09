@@ -15,16 +15,48 @@
     <input id="searchName" type="text" oninput="searchStudentByName()" />
 
     <div id="studentList"></div>
+
+    <button onclick="loadMore()">Load more</button>
+    <button onclick="showLess()">Show Less</button>
 </div>
 
 <script>
 
+    let page = 1;
+    let size=4;
+
+    const apiBaseUrl = 'http://localhost:8081';
+
+    function loadMore() {
+        const pageable = `?size=${size}&page=${page}`;
+
+        $.ajax(`${apiBaseUrl}/api/students` + pageable)
+            .done(function (result) {
+                buildUI(result.data, true);
+                if (result.data.length >= size) {
+                    page++;
+                }
+            })
+            .fail(function (error) {
+                console.log(error);
+            });
+    }
+
+    function showLess() {
+        $(".loadMore-" + page).hide();
+
+        if (page > 0) {
+            page--;
+        }
+    }
+
     function searchStudentByName() {
+        page = 0;
         let value = $('#searchName').val();
         console.log(value);
-        $.ajax('http://localhost:8080/api/students/' + value)
+        $.ajax(`${apiBaseUrl}/api/students/` + value)
             .done(function (result) {
-                buildUI(result);
+                buildUI(result.data);
             })
             .fail(function (error) {
                 console.log(error);
@@ -32,25 +64,41 @@
     }
 
     function getStudentList() {
-        $.ajax('http://localhost:8080/api/students')
+        page = 0;
+        $.ajax(`${apiBaseUrl}/api/students`)
             .done(function (result) {
-                buildUI(result);
+                buildUI(result.data);
             })
             .fail(function (error) {
                 console.log(error);
             });
     }
 
-    function buildUI(result) {
+    function buildUI(result, isAppend) {
         let slDiv = document.getElementById("studentList");
 
-        slDiv.innerHTML = "";
+        if (isAppend !== true) {
+            slDiv.innerHTML = "";
+        }
+
+
+        let divRow = document.createElement("div");
+        divRow.className = "row";
 
         for (let i = 0; i < result.length; i++) {
-            let p = document.createElement("p");
-            p.innerText = result[i].name;
-            slDiv.appendChild(p);
+            let divCol = document.createElement("div");
+            divCol.className = "col";
+
+            divCol.innerText = result[i].name;
+            if (isAppend === true) {
+                // divCol.className = "loadMore-" + page;
+                divCol.classList.add("loadMore-" + page);
+            }
+
+            divRow.appendChild(divCol);
         }
+
+        slDiv.appendChild(divRow);
     }
 
 </script>

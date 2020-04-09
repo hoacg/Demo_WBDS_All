@@ -31,29 +31,29 @@ public class HomeController {
         this.studentService = studentService;
     }
 
-    List<Student> getStudents() {
-        return studentService.getAllStudents("", 0, 0);
-    }
+//    List<Student> getStudents() {
+//        return studentService.getAllStudents("", 0, 0);
+//    }
 
-    @GetMapping("/home")
-    public String getIndex(Model model) {
-        model.addAttribute("tech", "Thymeleaf và công nghệ khác.");
-        model.addAttribute("students", getStudents());
-        return "index";
-    }
+//    @GetMapping("/home")
+//    public String getIndex(Model model) {
+//        model.addAttribute("tech", "Thymeleaf và công nghệ khác.");
+//        model.addAttribute("students", getStudents());
+//        return "index";
+//    }
 
-    @GetMapping("/student-list")
-    public String getStudentList(Model model) {
-
-        Object isSignedIn = httpSession.getAttribute("isSignedIn");
-
-        if (isSignedIn != null) {
-            model.addAttribute("students", getStudents());
-            return "student-list";
-        } else {
-            return "redirect:/signin";
-        }
-    }
+//    @GetMapping("/student-list")
+//    public String getStudentList(Model model) {
+//
+//        Object isSignedIn = httpSession.getAttribute("isSignedIn");
+//
+//        if (isSignedIn != null) {
+//            model.addAttribute("students", getStudents());
+//            return "student-list";
+//        } else {
+//            return "redirect:/signin";
+//        }
+//    }
 
     @GetMapping("/student-add")
     public ModelAndView getStudentAdd() {
