@@ -32,7 +32,7 @@ public class HomeController {
     }
 
     List<Student> getStudents() {
-        return studentService.getAllStudents("");
+        return studentService.getAllStudents("", 0, 0);
     }
 
     @GetMapping("/home")

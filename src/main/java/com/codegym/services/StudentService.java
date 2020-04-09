@@ -13,7 +13,7 @@ public class StudentService implements IStudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getAllStudents(String startWithText) {
+    public List<Student> getAllStudents(String startWithText, int size, int page) {
 
         if (startWithText.equals("") || startWithText.isEmpty()) {
             return studentRepository.getAllStudents();

@@ -18,15 +18,16 @@ public class StudentRestController {
 
     @GetMapping("/api/students")
     @ResponseBody()
-    public List<Student> getStudentsList() {
-        List<Student> students = this.studentService.getAllStudents("");
+    public List<Student> getStudentsList(@RequestParam(defaultValue = "4") int size, @RequestParam(defaultValue = "0") int page) {
+
+        List<Student> students = this.studentService.getAllStudents("", size, page);
         return students;
     }
 
     @GetMapping("/api/students/{name}")
     @ResponseBody()
-    public List<Student> getStudentsListByName(@PathVariable String name) {
-        List<Student> students = this.studentService.getAllStudents(name);
+    public List<Student> getStudentsListByName(@PathVariable String name, @RequestParam(defaultValue = "4") int size, @RequestParam(defaultValue = "0") int page) {
+        List<Student> students = this.studentService.getAllStudents(name, size, page);
         return students;
     }
 
