@@ -39,7 +39,7 @@ public class UserController {
             }
 
             model.addAttribute("message", "Đăng nhập thành công");
-            return "sign-in";
+            return "redirect:/";
         } else {
             model.addAttribute("message", "Đăng nhập không thành công");
             return "sign-in";

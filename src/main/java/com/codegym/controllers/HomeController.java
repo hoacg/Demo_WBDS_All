@@ -4,6 +4,7 @@ import com.codegym.models.Student;
 import com.codegym.services.IStudentService;
 import com.codegym.validators.FacebookUserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,9 +32,9 @@ public class HomeController {
         this.studentService = studentService;
     }
 
-//    List<Student> getStudents() {
-//        return studentService.getAllStudents("", 0, 0);
-//    }
+    Page<Student> getStudents() {
+        return studentService.getAllStudents("", 10, 0);
+    }
 
 //    @GetMapping("/home")
 //    public String getIndex(Model model) {
@@ -42,18 +43,18 @@ public class HomeController {
 //        return "index";
 //    }
 
-//    @GetMapping("/student-list")
-//    public String getStudentList(Model model) {
-//
-//        Object isSignedIn = httpSession.getAttribute("isSignedIn");
-//
-//        if (isSignedIn != null) {
-//            model.addAttribute("students", getStudents());
-//            return "student-list";
-//        } else {
-//            return "redirect:/signin";
-//        }
-//    }
+    @GetMapping("/")
+    public String getStudentList(Model model) {
+
+        Object isSignedIn = httpSession.getAttribute("isSignedIn");
+
+        if (isSignedIn != null) {
+            model.addAttribute("students", getStudents());
+            return "student-list";
+        } else {
+            return "redirect:/signin";
+        }
+    }
 
     @GetMapping("/student-add")
     public ModelAndView getStudentAdd() {
