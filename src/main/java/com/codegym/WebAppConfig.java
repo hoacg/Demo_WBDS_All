@@ -99,9 +99,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
 
     @Bean
     public DataSource dataSource() {
+        // CREATE SCHEMA `studentmanagement` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/studentmangement");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/studentmanagement?useUnicode=true&characterEncoding=utf-8");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
 
