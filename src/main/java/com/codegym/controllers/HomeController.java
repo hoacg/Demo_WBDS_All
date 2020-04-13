@@ -46,14 +46,17 @@ public class HomeController {
     @GetMapping("/")
     public String getStudentList(Model model) {
 
-        Object isSignedIn = httpSession.getAttribute("isSignedIn");
+        /*Object isSignedIn = httpSession.getAttribute("isSignedIn");
 
         if (isSignedIn != null) {
             model.addAttribute("students", getStudents());
             return "student-list";
         } else {
             return "redirect:/signin";
-        }
+        }*/
+
+        model.addAttribute("students", getStudents());
+        return "student-list";
     }
 
     @GetMapping("/student-add")
