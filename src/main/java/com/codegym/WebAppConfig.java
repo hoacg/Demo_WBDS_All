@@ -1,10 +1,13 @@
 package com.codegym;
 
 import com.codegym.aspects.LoggingAspect;
+import com.codegym.components.MySuccessHandler;
 import com.codegym.repositories.old.IStudentRepository;
 import com.codegym.repositories.old.StudentHibernateSpringDataJPARepository;
 import com.codegym.services.IStudentService;
+import com.codegym.services.IUserService;
 import com.codegym.services.NewStudentService;
+import com.codegym.services.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -20,6 +23,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
@@ -178,5 +182,15 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(new Locale("en"));
         return localeResolver;
+    }
+
+    @Bean
+    IUserService userService() {
+        return new UserService();
+    }
+
+    @Bean
+    AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new MySuccessHandler();
     }
 }

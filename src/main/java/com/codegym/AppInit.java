@@ -12,12 +12,12 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { WebSecurityConfig.class };
+        return new Class[] { WebAppConfig.class, WebSecurityConfig.class };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { WebAppConfig.class };
+        return new Class[] { };
     }
 
     @Override
