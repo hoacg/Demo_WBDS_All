@@ -93,10 +93,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
         return viewResolver;
     }
 
-    @Bean
-    public IStudentService studentService() {
-        return new NewStudentService();
-    }
+//    @Bean
+//    public IStudentService studentService() {
+//        return new NewStudentService();
+//    }
 
     @Bean
     public IStudentRepository studentRepository() {

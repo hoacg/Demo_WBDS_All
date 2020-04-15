@@ -9,6 +9,16 @@ import java.time.LocalDate;
 @Table(name = "students")
 public class Student {
 
+    public Student(Long id, String name, int gender, String email, @Size(min = 4, max = 100, message = "Độ dài chuỗi nằm trong khoảng từ 4 đến 100 ký tự") String address, LocalDate birthday, String facebook) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.email = email;
+        this.address = address;
+        this.birthday = birthday;
+        this.facebook = facebook;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

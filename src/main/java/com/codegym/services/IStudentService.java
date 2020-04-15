@@ -8,4 +8,5 @@ import java.util.List;
 public interface IStudentService {
     Page<Student> getAllStudents(String startWithText, int size, int page);
     Student save(Student student);
+    Student getStudentById(Long id);
 }
