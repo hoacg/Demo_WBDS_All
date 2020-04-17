@@ -15,11 +15,10 @@ public class DemoJUnit {
     }
 
     @Test
-    @DisplayName("Demo test case FAILED với giá trị false")
     void demoTestCase2() {
         boolean expected = true;
 
-        boolean actual = false;
+        boolean actual = true;
         assertEquals(expected, actual);
     }
 
